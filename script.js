@@ -1,32 +1,40 @@
-// Selecting HTML elements with querySelector & getElementById
+// Get the first element in the document with _
 const css = document.querySelector("h3");
 const color1 = document.querySelector(".color1");
 const color2 = document.querySelector(".color2");
+const random = document.querySelector(".random-button");
+
+// Getting the body colors by the id of gradient
 const body = document.getElementById("gradient");
-const random = document.querySelector(".random");
 
-
-function setGraident(){
-    body.style.background = "linear-gradient(to right, " + color1.value + ", " + color2.value + ")";
-
-    css.textContent = body.style.background + ";";
+// Function to set the gradient once changed
+function setGraident() {
+  // create the css
+  body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
+  // put the css of background on the screen
+  css.textContent = `${body.style.background};`;
 }
 
+// Function to get a random color
 function randomColor() {
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += Math.floor(Math.random() * 10);
-        }
-    return color;
-}
-    
-function setRandomColor(){
-    color1.value = randomColor(); 
-    color2.value = randomColor();
-    setGraident();
+  // create color variable
+  let color = "#"; // hex color
+  for (let i = 0; i < 6; i++) {
+    // for 6 times add a random number to the color variable
+    color += Math.floor(Math.random() * 10);
+  }
+  // return the random color
+  return color;
 }
 
-// Adding event listeners to fill background with chosen color
+function setRandomColor() {
+  // function to set the random color
+  color1.value = randomColor();
+  color2.value = randomColor();
+  setGraident();
+}
+
+// Every time first parameter changes, call this function
 color1.addEventListener("input", setGraident);
 
 color2.addEventListener("input", setGraident);
